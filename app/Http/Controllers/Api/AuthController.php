@@ -422,7 +422,7 @@ class AuthController extends Controller
     }
 
 
-    //Get all verified NGO's
+    //Get all verified NGO's here
     public function allNgo(Request $request){
         $roles = Role::find(2);
         if(isset($request->category)){
