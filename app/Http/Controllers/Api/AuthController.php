@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use InterImage;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Builder;
+use App\Notifications\MailNotification;
 
 class AuthController extends Controller
 {
@@ -66,6 +67,8 @@ class AuthController extends Controller
             'fcra_number'=>$request->fcra_number,
             'otp_verify'=>0
         ]);
+        $email =$request->email;
+        $user->notify(new MailNotification($email));
         $user->save();
         $usertype = 2;
         $user->roles()->attach($usertype);
